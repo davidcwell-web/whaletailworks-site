@@ -121,7 +121,7 @@ header{
 #ufoRig .lights i:nth-child(4){left:66%;top:46%;animation-delay:.42s}
 @keyframes lampCycle{0%,100%{opacity:.25}40%{opacity:1}}
 #ufoRig .beam{
-  position:absolute;left:46%;top:64%;width:96px;height:190px;
+  position:absolute;left:46%;top:64%;width:96px;height:var(--beamH,150px);
   transform:translateX(-50%) scaleY(0);transform-origin:top center;
   background:linear-gradient(180deg,rgba(150,245,255,.5),rgba(120,235,255,.16) 45%,rgba(120,235,255,0));
   clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);
@@ -130,7 +130,8 @@ header{
 #ufoRig.beaming .beam{transform:translateX(-50%) scaleY(1);opacity:1;
   animation:beamShimmer .6s ease-in-out infinite alternate}
 @keyframes beamShimmer{to{filter:brightness(1.35)}}
-#ufoRig .abductee{
+#ufoRig .abductee{         /* retired: the saucer steals letters now, not people */
+  display:none;
   position:absolute;left:46%;top:calc(64% + 168px);width:15px;height:30px;
   transform:translateX(-50%);opacity:0;
   background:linear-gradient(180deg,#0b1220,#1a2740);
@@ -152,8 +153,40 @@ header{
   filter:drop-shadow(0 0 26px rgba(34,211,238,.55));
   animation:swim 7s ease-in-out infinite alternate;
 }
-.hero-logo .word{width:min(340px,58vw);height:auto;margin-top:-6px;opacity:.96;
-  filter:drop-shadow(0 2px 14px rgba(0,0,0,.6))}
+/* wordmark is live text so the saucer can steal letters out of it */
+.hero-logo .word{margin-top:2px;text-align:center;user-select:none}
+.wtext{
+  font-weight:700;font-size:clamp(1.7rem,5.4vw,3.2rem);letter-spacing:-.005em;
+  color:#fff;line-height:1.1;filter:drop-shadow(0 2px 16px rgba(0,0,0,.55));
+}
+.wtext .ltr{display:inline-block;transition:color .5s,text-shadow .5s,-webkit-text-stroke-color .5s}
+.wtext .ltr.hollow{                       /* white beamed away — blue frame remains */
+  color:transparent;
+  -webkit-text-stroke:1.4px var(--cyan);
+  text-shadow:0 0 12px rgba(34,211,238,.55);
+}
+.wtext .ltr.remat{animation:remat .9s ease-out}
+@keyframes remat{
+  0%{color:transparent;text-shadow:0 0 26px #fff}
+  40%{color:#fff;text-shadow:0 0 30px #bff4ff,0 0 60px rgba(34,211,238,.8)}
+  100%{color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+}
+.llc{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:2px;
+  font-size:.74rem;letter-spacing:.32em;color:#dbe7f5}
+.llc i{display:block;width:clamp(46px,12vw,86px);height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan))}
+.llc i:last-child{background:linear-gradient(90deg,var(--cyan),transparent)}
+/* a stolen letter, rising into the ship */
+.ghost{position:absolute;z-index:2;pointer-events:none;color:#fff;font-weight:700;
+  line-height:1;text-shadow:0 0 16px #bff4ff,0 0 34px rgba(34,211,238,.7);
+  transition:transform 1.5s cubic-bezier(.4,0,.5,1),opacity 1.5s ease-in}
+/* the whale answers, and the letters come back */
+.hero-logo .mark.flash{animation:whaleFlash 1.8s ease-out}
+@keyframes whaleFlash{
+  0%{filter:drop-shadow(0 0 26px rgba(34,211,238,.55))}
+  35%{filter:drop-shadow(0 0 70px #bff4ff) drop-shadow(0 0 120px rgba(34,211,238,.95)) brightness(1.9)}
+  100%{filter:drop-shadow(0 0 26px rgba(34,211,238,.55))}
+}
 @keyframes swim{
   from{transform:translateY(-6px) rotate(-1.2deg)}
   to{transform:translateY(6px) rotate(1.2deg)}
@@ -374,7 +407,10 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   <div>
     <div class="hero-logo">
       <img class="mark" src="img/logo_whale.png" alt="Whale Tail Works — circuit whale logo">
-      <img class="word" src="img/logo_word.png" alt="Whale Tail Works LLC">
+      <div class="word">
+        <div class="wtext" id="wtext" aria-label="Whale Tail Works">Whale Tail Works</div>
+        <div class="llc"><i></i>LLC<i></i></div>
+      </div>
     </div>
     <span class="kicker">Independent Game Studio · Est. 2026</span>
     <h1>WORLDS WORTH<br>DEFENDING</h1>
@@ -646,6 +682,115 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
     const w=header.clientWidth,uw=rig.offsetWidth||110;
     return R(12,Math.max(16,w-uw-12));
   }
+  /* ---- letter theft: the saucer steals the white out of the wordmark ---- */
+  const wtext=document.getElementById('wtext');
+  const markEl=document.querySelector('.hero-logo .mark');
+  if(wtext&&!wtext.dataset.split){          // wrap each character in its own span
+    wtext.dataset.split='1';
+    wtext.innerHTML=[...wtext.textContent].map(ch=>
+      ch===' '?'<span class="sp"> </span>':'<span class="ltr">'+ch+'</span>').join('');
+  }
+  const letters=()=>[...document.querySelectorAll('.wtext .ltr')];
+  const hRect=()=>header.getBoundingClientRect();
+  function relBox(el){
+    const r=el.getBoundingClientRect(), hb=hRect();
+    return {x:r.left-hb.left,y:r.top-hb.top,w:r.width,h:r.height};
+  }
+  // fly the ship so its beam lands on this letter
+  function shipSpotFor(el){
+    const b=relBox(el), rw=rig.offsetWidth||100, rh=rig.offsetHeight||56;
+    // hover just above the letter so the beam clearly links ship → letter
+    const want=Math.min(110,Math.max(64,b.y-topSafe()-rh*0.64-6));
+    const y=Math.max(topSafe(),b.y-want-rh*0.64);
+    const beamLen=Math.max(40,b.y-(y+rh*0.64)+b.h*0.75);
+    rig.style.setProperty('--beamH',beamLen+'px');
+    const x=Math.max(8,Math.min(header.clientWidth-rw-8,b.x+b.w/2-rw*0.46));
+    return {x,y,b};
+  }
+  async function stealLetter(el){
+    const {x,y,b}=shipSpotFor(el);
+    place(x,y,2600);                        // ease into position over the letter
+    await wait(2750);
+    rig.classList.add('beaming');
+    await wait(420);
+    // the white fill lifts out, leaving the blue frame behind
+    const cs=getComputedStyle(el);
+    const g=document.createElement('span');
+    g.className='ghost';
+    g.textContent=el.textContent;
+    g.style.cssText+=`left:${b.x}px;top:${b.y}px;font-size:${cs.fontSize};font-family:${cs.fontFamily}`;
+    header.appendChild(g);
+    el.classList.add('hollow');
+    await wait(30);
+    const rb=relBox(rig);
+    const dx=(rb.x+(rig.offsetWidth||100)*0.46)-(b.x+b.w/2);
+    const dy=(rb.y+22)-b.y;
+    g.style.transform=`translate(${dx}px,${dy}px) scale(.18) rotate(${R(-40,40)}deg)`;
+    g.style.opacity='0';
+    await wait(1600);
+    g.remove();
+    rig.classList.remove('beaming');
+    await wait(320);
+  }
+  async function restoreWord(){
+    markEl&&markEl.classList.add('flash');
+    await wait(400);
+    const ls=letters();
+    for(const el of ls){
+      el.classList.remove('hollow');
+      el.classList.add('remat');
+      setTimeout(()=>el.classList.remove('remat'),950);
+      await wait(70);
+    }
+    await wait(900);
+    markEl&&markEl.classList.remove('flash');
+  }
+  // slow, smooth arrival from off-screen (no popping into view)
+  async function flyIn(){
+    const w=header.clientWidth, uw=rig.offsetWidth||100;
+    const fromLeft=Math.random()<.5;
+    rig.style.opacity='0';
+    rig.classList.remove('warp','beaming');
+    rig.querySelector('.saucer').style.animation='';
+    place(fromLeft?-uw-40:w+40,skyY(),0);
+    await wait(80);
+    rig.style.opacity='.92';
+    const tx=fromLeft?R(30,Math.max(40,w*0.28)):R(w*0.62,Math.max(w*0.63,w-uw-30));
+    place(tx,skyY(),4200);                  // long, gentle glide into frame
+    await wait(4400);
+    return tx;
+  }
+  async function warpOut(fromX){
+    const dir=fromX<header.clientWidth/2?-1:1;
+    rig.classList.add('warp');
+    place(fromX+dir*Math.max(700,header.clientWidth*0.8),Math.max(topSafe(),header.clientHeight*0.24),520);
+    await wait(620);
+    rig.style.opacity='0';
+    await wait(120);
+    rig.classList.remove('warp');
+    rig.querySelector('.saucer').style.animation='none';
+    void rig.offsetWidth;                    // reset the stretch animation
+    rig.querySelector('.saucer').style.animation='';
+  }
+  async function letterCycle(){
+    while(true){
+      const x=await flyIn();
+      const pool=letters().filter(l=>!l.classList.contains('hollow'));
+      if(!pool.length){                      // the word is empty — the whale answers
+        await wait(600);
+        await restoreWord();
+        await warpOut(x);
+        await wait(R(1800,2600));
+        continue;
+      }
+      const target=pool[Math.floor(Math.random()*pool.length)];
+      await stealLetter(target);
+      await warpOut(relBox(rig).x);
+      await wait(R(1500,2600));
+    }
+  }
+  if(wtext){letterCycle();return;}
+
   async function cycle(){
     const h=header.clientHeight;
     while(true){
