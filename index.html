@@ -100,22 +100,28 @@ header{
 }
 @keyframes ufoWobble{from{transform:rotate(-3deg) translateY(-3px)}to{transform:rotate(3deg) translateY(3px)}}
 #ufoRig .glow{
-  position:absolute;left:50%;top:64%;width:70px;height:70px;transform:translate(-50%,-50%);
+  position:absolute;left:46%;top:58%;width:70px;height:70px;transform:translate(-50%,-50%);
   border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,rgba(120,240,255,.55),rgba(34,211,238,0) 70%);
   animation:ufoPulse 1.4s ease-in-out infinite;
 }
 @keyframes ufoPulse{50%{transform:translate(-50%,-50%) scale(1.35);opacity:.7}}
-#ufoRig .lights{position:absolute;left:50%;top:60%;transform:translateX(-50%);
-  display:flex;gap:11px}
-#ufoRig .lights i{width:5px;height:5px;border-radius:50%;background:#bff4ff;
-  box-shadow:0 0 8px #7fe9ff;animation:lampCycle 1.1s linear infinite}
-#ufoRig .lights i:nth-child(2){animation-delay:.14s}
-#ufoRig .lights i:nth-child(3){animation-delay:.28s}
-#ufoRig .lights i:nth-child(4){animation-delay:.42s}
+/* lamps ride the saucer's tilted hull — each is placed and rotated to match the art */
+#ufoRig .lights{position:absolute;left:0;top:0;width:100%;height:100%;
+  transform-origin:50% 40%;
+  animation:ufoWobble 2.6s ease-in-out infinite alternate}
+@media(max-width:760px){#ufoRig .saucer{width:78px}}
+#ufoRig .lights i{position:absolute;width:5px;height:5px;border-radius:50%;
+  background:#cdf6ff;box-shadow:0 0 9px #7fe9ff,0 0 3px #fff;
+  animation:lampCycle 1.1s linear infinite}
+/* hull runs lower-left → upper-right, so the lamp row rises across the disc */
+#ufoRig .lights i:nth-child(1){left:24%;top:60%}
+#ufoRig .lights i:nth-child(2){left:38%;top:56%;animation-delay:.14s}
+#ufoRig .lights i:nth-child(3){left:52%;top:51%;animation-delay:.28s}
+#ufoRig .lights i:nth-child(4){left:66%;top:46%;animation-delay:.42s}
 @keyframes lampCycle{0%,100%{opacity:.25}40%{opacity:1}}
 #ufoRig .beam{
-  position:absolute;left:50%;top:70%;width:96px;height:190px;
+  position:absolute;left:46%;top:64%;width:96px;height:190px;
   transform:translateX(-50%) scaleY(0);transform-origin:top center;
   background:linear-gradient(180deg,rgba(150,245,255,.5),rgba(120,235,255,.16) 45%,rgba(120,235,255,0));
   clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);
@@ -125,7 +131,7 @@ header{
   animation:beamShimmer .6s ease-in-out infinite alternate}
 @keyframes beamShimmer{to{filter:brightness(1.35)}}
 #ufoRig .abductee{
-  position:absolute;left:50%;top:calc(70% + 168px);width:15px;height:30px;
+  position:absolute;left:46%;top:calc(64% + 168px);width:15px;height:30px;
   transform:translateX(-50%);opacity:0;
   background:linear-gradient(180deg,#0b1220,#1a2740);
   border-radius:50% 50% 42% 42%/62% 62% 38% 38%;
@@ -611,12 +617,30 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   }
   // on phones the logo spans the width — fly ABOVE it instead of beside it
   const narrow=()=>header.clientWidth<720;
-  // highest safe band: above the logo on phones, upper sky on desktop
-  function skyY(){
+  // never fly under the fixed nav bar
+  const navEl=document.querySelector('nav');
+  const topSafe=()=>(navEl?navEl.getBoundingClientRect().bottom:0)+14;
+  // is there sky between the nav and the logo?
+  const ctaEl=document.querySelector('.cta-row');
+  function roomAbove(){
     const lb=logoEl?logoEl.getBoundingClientRect():null;
-    const cap=lb?Math.max(2,lb.top-(rig.offsetHeight||70)-12):header.clientHeight*0.2;
-    return narrow()?Math.min(cap,R(2,Math.max(4,cap))):R(header.clientHeight*0.10,
-      Math.min(header.clientHeight*0.20,cap));
+    return lb?(lb.top-(rig.offsetHeight||60)-14)-topSafe():999;
+  }
+  /* flight band: desktop cruises the upper sky beside the logo; phones use the
+     empty air BELOW the call-to-action buttons (the logo spans the width there). */
+  function skyY(){
+    const t=topSafe(), h=header.clientHeight;
+    if(narrow()){
+      const cb=ctaEl?ctaEl.getBoundingClientRect().bottom+18:h*0.72;
+      const lo=Math.min(h-(rig.offsetHeight||60)-14,cb);
+      const hi2=Math.min(h-(rig.offsetHeight||60)-8,lo+90);
+      if(hi2>lo)return R(lo,hi2);
+      return Math.max(t,roomAbove()>0?t:h*0.62);
+    }
+    const lb=logoEl?logoEl.getBoundingClientRect():null;
+    const cap=lb?lb.top-(rig.offsetHeight||60)-12:h*0.22;
+    if(cap>t+10)return R(t,Math.min(h*0.22,cap));
+    return R(Math.max(t,h*0.30),h*0.42);   // no sky above? cruise beside, lower down
   }
   function anyX(){
     const w=header.clientWidth,uw=rig.offsetWidth||110;
@@ -639,11 +663,17 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
         }
         const crossing=logoEl&&((x<logoEl.getBoundingClientRect().left)!==
           (nx<logoEl.getBoundingClientRect().left));
-        if(crossing){                      // hop OVER the logo, never through it
-          const top=Math.max(4,(logoEl.getBoundingClientRect().top)-rig.offsetHeight-14);
+        if(crossing&&roomAbove()>8){       // hop OVER the logo, never through it
+          const top=Math.max(topSafe(),(logoEl.getBoundingClientRect().top)-rig.offsetHeight-14);
           place(x,top,900);await wait(950);
           place(nx,top,R(2400,3200));await wait(R(2600,3400));
           y=hi();place(nx,y,900);await wait(950);
+        }else if(crossing){                // no sky above the logo — stay on this side
+          const sx=lane(), same=logoEl&&((x<logoEl.getBoundingClientRect().left)===
+            (sx<logoEl.getBoundingClientRect().left));
+          const tx2=same?sx:x+R(-40,40);
+          y=hi();place(tx2,y,R(4200,5600));await wait(R(4400,5800));
+          x=tx2;continue;
         }else{
           y=hi();place(nx,y,R(5200,7000));await wait(R(5400,7200));
         }
@@ -654,14 +684,13 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
       const uw2=rig.offsetWidth||110;
       let ax=x, ay;
       if(narrow()){
-        // phones: beam down from the strip ABOVE the logo (no room beside it)
-        ay=Math.max(2,(lb2?lb2.top:h*0.3)-(rig.offsetHeight||70)-16);
+        ay=skyY();                          // phones: beam down in the low band
       }else{
         if(lb2){                            // desktop: nudge fully clear of the column
           if(x<lb2.left)ax=Math.min(x,Math.max(16,lb2.left-uw2-26));
           else ax=Math.max(x,Math.min(header.clientWidth-uw2-16,lb2.right+26));
         }
-        ay=h*0.40;
+        ay=Math.max(topSafe(),h*0.40);
       }
       place(ax,ay,2600);
       await wait(2800);
@@ -674,14 +703,14 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
       // warp off screen, fast
       const dir=ax<header.clientWidth/2?-1:1;
       rig.classList.add('warp');
-      place(ax+dir*Math.max(600,header.clientWidth*0.7),h*0.28,520);
+      place(ax+dir*Math.max(600,header.clientWidth*0.7),Math.max(topSafe(),h*0.28),520);
       await wait(700);
       rig.style.opacity='0';
       rig.classList.remove('warp');
       await wait(R(3000,5000));
       // ...and come back slowly from the other side
       const bx=dir<0?header.clientWidth-160:40;
-      place(bx,R(h*0.12,h*0.2),0);
+      place(bx,Math.max(topSafe(),R(h*0.12,h*0.2)),0);
       await wait(50);
       rig.style.opacity='.9';
       await wait(400);
