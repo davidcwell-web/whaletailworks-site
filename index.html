@@ -375,6 +375,22 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   .rv{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
+
+/* ---- Greenwood showcase ------------------------------------------------ */
+.gw-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.86}
+.gw-plaque{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(78%,420px);filter:drop-shadow(0 10px 26px rgba(0,0,0,.65))}
+.gw-plaque img{display:block;width:100%;height:auto}
+.gw-feat{color:#9fb3c8;font-size:.94rem}
+.pixel-strip.gw-cast img{width:46px;height:46px;image-rendering:pixelated}
+.gw-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 6px}
+.gw-gallery img{width:100%;height:auto;border-radius:10px;display:block;
+  border:1px solid rgba(148,163,184,.22)}
+@media (max-width:640px){
+  .gw-gallery{grid-template-columns:1fr}
+  .pixel-strip.gw-cast img{width:38px;height:38px}
+}
 </style>
 </head>
 <body>
@@ -494,25 +510,36 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
     <div class="art" style="background:
       radial-gradient(80% 100% at 30% 100%,rgba(45,212,191,.18),transparent),
       linear-gradient(160deg,#0d1c14,#091120)">
-      <div style="position:absolute;inset:0;display:grid;place-items:center">
-        <div class="pixel-strip" style="margin:0">
-          <img src="img/gw_knight.png" alt="Pixel knight sprite">
-          <img src="img/gw_wolf.png" alt="Pixel wolf sprite">
-          <img src="img/gw_deepmother.png" alt="Pixel kraken sprite">
-        </div>
+      <img class="gw-shot" src="img/gw_shot_wild.jpg"
+           alt="Guardians of the Greenwood Way — isometric tactics on a forest board"
+           loading="lazy" decoding="async">
+      <div class="gw-plaque">
+        <img src="img/gw_wordmark.png" alt="Greenwood" loading="lazy" decoding="async">
       </div>
     </div>
     <div class="info">
       <span class="tag dev">In Development</span>
       <h3>Guardians of the Greenwood Way</h3>
-      <div class="genre">turn-based pixel tactics · comedy · campaign</div>
+      <div class="genre">turn-based pixel tactics · comedy · 15-mission campaign</div>
       <p>Eight unlikely heroes, one dying forest, and a very opinionated toad. Isometric tactics with
       real verticality, telegraphed enemies, campfire banter — and a villain who only wanted to be remembered.</p>
-      <div class="pixel-strip">
-        <img src="img/gw_reg.png" alt="Sir Reginald portrait">
-        <img src="img/gw_elowen.png" alt="Elowen portrait">
-        <img src="img/gw_barnaby.png" alt="Barnaby portrait">
-        <img src="img/gw_mabs.png" alt="Mabs portrait">
+      <p class="gw-feat">Three acts across wildland, drowned sea and frozen peaks · a storm that buries
+      the board while you fight · mercy you can choose, and an ending that remembers every time you did.</p>
+      <div class="pixel-strip gw-cast">
+        <img src="img/gw_reg.png" alt="Sir Reginald" loading="lazy">
+        <img src="img/gw_elowen.png" alt="Elowen" loading="lazy">
+        <img src="img/gw_barnaby.png" alt="Barnaby" loading="lazy">
+        <img src="img/gw_mabs.png" alt="Mabs" loading="lazy">
+        <img src="img/gw_sylvai.png" alt="Sylvai" loading="lazy">
+        <img src="img/gw_gruni.png" alt="Gruni" loading="lazy">
+        <img src="img/gw_torvald.png" alt="Torvald" loading="lazy">
+        <img src="img/gw_pip.png" alt="Pip" loading="lazy">
+      </div>
+      <div class="gw-gallery">
+        <img src="img/gw_shot_sea.jpg" alt="The Sundered Sea — rain over an all-water board"
+             loading="lazy" decoding="async">
+        <img src="img/gw_shot_peaks.jpg" alt="The Crown Peaks — a blizzard burying the mountainside"
+             loading="lazy" decoding="async">
       </div>
       <a class="btn ghost" href="#contact">Get Launch News</a>
     </div>
@@ -542,8 +569,9 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
         <defs><linearGradient id="pg2" x1="0" y1="48" x2="48" y2="0"><stop stop-color="#fbbf24"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
         <path d="M24 12c-4-4-9-5-15-4v28c6-1 11 0 15 4 4-4 9-5 15-4V8c-6-1-11 0-15 4z"/><path d="M24 12v28"/>
       </svg></div>
-      <div class="pi"><h4>Comics & Collectibles</h4>
-        <p>Key issues and reader copies alike — graded honestly, boarded and bagged.</p>
+      <div class="pi"><h4>Toys & Collectibles</h4>
+        <p>Figures, models and the shelf-worthy odd thing — described honestly,
+        packed properly, and shipped so it arrives the way it left.</p>
         <div class="price-row"><span class="price">LIVE LISTINGS</span><a class="go" href="#" data-ebay>BROWSE →</a></div>
       </div>
     </div>
