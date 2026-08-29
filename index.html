@@ -186,18 +186,11 @@ header{
 @keyframes warpStretch{to{transform:scaleX(2.3) scaleY(.45);opacity:0;filter:brightness(2.4)}}
 /* hero logo lockup: neon circuit whale over the wordmark */
 .hero-logo{display:flex;flex-direction:column;align-items:center;margin-bottom:26px}
-/* ⚠ THE TAIL IS A SECOND COPY OF THE SAME PNG. The logo is one image, so the
-   flukes are articulated by overlaying a duplicate clipped to the tail region
-   and rotating that on its own. The cut runs through the PEDUNCLE at x=72%
-   (measured off the art: head left, flukes upper right) and the rotation origin
-   sits ON the cut, so displacement at the seam is ~0 and grows to the fluke
-   tips — which is why the join does not show. */
-/* ⚠ THE SWIM LIVES HERE, not on the body image. The tail is a SIBLING of the
-   body, so with `swim` on the body the two halves of the same whale rode
-   different transforms and pulled apart at the cut — measured as a gradient of
-   136 across the seam. On the wrapper they move together and the join cannot
-   separate; the tail then adds its own sweep on top, which is what an
-   articulated tail is. */
+/* ⚠ THE WHALE IS ONE STATIC IMAGE, BY DECISION. Tail articulation was tried
+   twice (CSS masked-copy sweep, then a baked animated WebP) and rejected on
+   review both times. The wrapper carries the whole-whale concerns: the swim
+   bob, the glow (a filter here follows the composited silhouette — on the img
+   it traced clip edges), and the flash. */
 .mark-wrap{
   position:relative;display:inline-block;line-height:0;
   animation:swim 7s ease-in-out infinite alternate;
@@ -214,58 +207,9 @@ header{
          drop-shadow(0 0 26px rgba(34,211,238,.26))
          drop-shadow(0 0 62px rgba(34,211,238,.15));
 }
-.hero-logo .mark{
-  width:min(430px,72vw);height:auto;
-  /* ⚠ A SOFT MASK, NOT A CLIP. A hard cut meets the tail along a line, and
-     rotating one side leaves the ink either side of that line misaligned — no
-     pivot placement removes that, it only moves where it is worst. These two
-     masks are exactly complementary, so inside the band BOTH halves are partly
-     present and a mismatch cross-fades instead of breaking.
-     ⚠ Must stay exactly inverse of .mark-tail's, or the overlap double-exposes
-     into a bright ridge or under-covers into a dark gap. */
-  /* ⚠ NARROW, AND ON THE PEDUNCLE. A wide fade (62%..84%) hid the rotation
-     mismatch but left the body's OWN flukes painted underneath the animated
-     ones across 72%..84% — a second, static tail. The body must be fully gone
-     before its fluke ink starts, so the band is 71%..74% and sits exactly on
-     the peduncle, where the pivot is and the mismatch is ~3.5px. */
-  -webkit-mask-image:linear-gradient(to right,#000 71%,transparent 74%);
-  mask-image:linear-gradient(to right,#000 71%,transparent 74%);
-}
-.hero-logo .mark-tail{
-  position:absolute;left:0;top:0;width:100%;height:100%;
-  -webkit-mask-image:linear-gradient(to right,transparent 71%,#000 74%);
-  mask-image:linear-gradient(to right,transparent 71%,#000 74%);
-  /* ⚠ without this the compositor re-rasterises the masked layer every frame
-     and the sweep visibly stutters at hero size */
-  will-change:transform;
-  /* ⚠ the pivot sits at the MIDDLE OF THE INK, not the middle of the image. The
-     peduncle crosses the cut over roughly y=30%..55%; a pivot at 52% left the
-     top of that range 22% of the image height away and it visibly split. */
-  /* ⚠ the MIDDLE of the blend band, so displacement is smallest exactly where
-     the two layers overlap */
-  transform-origin:72.5% 43%;
-  /* ⚠ its own, slower period — deliberately OUT OF PHASE with the body. A tail
-     that sweeps in time with the bob is one rigid rotation again, which is the
-     thing this exists to fix. */
-  /* ⚠ a custom cubic, not ease-in-out: the stroke should accelerate through
-     the middle and settle at the extremes, which is how a fluke actually
-     moves. ease-in-out gives a pendulum. */
-  animation:tailSweep 5.2s cubic-bezier(.42,0,.30,1) infinite;
-  pointer-events:none;
-}
-/* ⚠ six keyframes with a slight skew counter-phase, so the blade FLEXES through
-   the stroke instead of swinging as a rigid plate. The skew leads the rotation
-   at the start of each half-stroke and trails it at the end — that lead/lag is
-   what reads as fluid. */
-@keyframes tailSweep{
-  0%   {transform:rotate(-6.6deg) translateY(2.2px)  skewY(1.1deg)  scaleY(.978)}
-  22%  {transform:rotate(-2.2deg) translateY(1.0px)  skewY(-1.4deg) scaleY(.994)}
-  50%  {transform:rotate(7.2deg)  translateY(-2.2px) skewY(-1.2deg) scaleY(1.022)}
-  72%  {transform:rotate(2.4deg)  translateY(-1.0px) skewY(1.5deg)  scaleY(1.006)}
-  100% {transform:rotate(-6.6deg) translateY(2.2px)  skewY(1.1deg)  scaleY(.978)}
-}
+.hero-logo .mark{width:min(430px,72vw);height:auto}
 @media(prefers-reduced-motion:reduce){
-  .mark-wrap,.hero-logo .mark-tail{animation:none}
+  .mark-wrap{animation:none}
 }
 /* wordmark is live text so the saucer can steal letters out of it */
 .hero-logo .word{margin-top:2px;text-align:center;user-select:none}
@@ -561,8 +505,12 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   <div>
     <div class="hero-logo">
       <span class="mark-wrap">
+        <!-- ⚠ THE TAIL IS DELIBERATELY STATIC. Two attempts at animating it — a
+             masked second copy swept by CSS keyframes, then a pre-rendered
+             animated WebP — were both reviewed on the page and rejected; the
+             still mark with the wrapper's glow and slow swim bob is the look.
+             Do not reintroduce tail articulation without a fresh decision. -->
         <img class="mark" src="img/logo_whale.png" alt="Whale Tail Works — circuit whale logo">
-        <img class="mark-tail" src="img/logo_whale.png" alt="" aria-hidden="true">
       </span>
       <div class="word">
         <div class="wtext" id="wtext" aria-label="Whale Tail Works">Whale Tail Works</div>
