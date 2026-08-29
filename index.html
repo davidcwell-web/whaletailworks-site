@@ -73,7 +73,13 @@ nav .links a:hover::after{transform:scaleX(1)}
 /* ---------- hero ---------- */
 header{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;text-align:center;padding:90px 5vw 60px;
+  position:relative;overflow:hidden;text-align:center;padding:110px 5vw 60px;
+  /* ⚠ SAFE center. On laptop heights (720–900px) the hero column is taller than
+     the viewport; plain `center` spills the overflow ABOVE the padding box, so
+     the whale rode up to within 14px of the fixed nav (and the swim bob eats
+     ~6px more). `safe center` falls back to start-alignment on overflow, which
+     keeps the whale below padding-top; tall screens still center as before. */
+  align-items:safe center;
 }
 .hero-art{
   position:absolute;inset:-4%;z-index:-1;
