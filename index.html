@@ -448,7 +448,7 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
 
 /* ---- Greenwood showcase ------------------------------------------------ */
 .gw-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:.86}
+  object-position:center top;opacity:1}
 .gw-plaque{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:min(78%,420px);filter:drop-shadow(0 10px 26px rgba(0,0,0,.65))}
 .gw-plaque img{display:block;width:100%;height:auto}
@@ -462,11 +462,11 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   letter-spacing:.1em;text-transform:uppercase;color:#8bd9c4;
   border:1px solid rgba(45,212,191,.34);border-radius:999px;
   background:rgba(45,212,191,.07);padding:5px 11px;white-space:nowrap}
-.gw-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 6px}
+.gw-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 6px}
 .gw-gallery img{width:100%;height:auto;border-radius:10px;display:block;
   border:1px solid rgba(148,163,184,.22)}
 @media (max-width:640px){
-  .gw-gallery{grid-template-columns:1fr}
+  .gw-gallery{grid-template-columns:repeat(3,1fr)}
   .pixel-strip.gw-cast img{width:38px;height:38px}
   .gw-facts li{font-size:.56rem;letter-spacing:.06em;padding:4px 9px}
 }
@@ -655,12 +655,11 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
     <div class="art" style="background:
       radial-gradient(80% 100% at 30% 100%,rgba(45,212,191,.18),transparent),
       linear-gradient(160deg,#0d1c14,#091120)">
-      <img class="gw-shot" src="img/gw_shot_wild.jpg"
-           alt="Guardians of the Greenwood Way — isometric tactics on a forest board"
+      <img class="gw-shot" src="img/gw_shot_wyrm.jpg"
+           alt="Guardians of the Greenwood Way — the Old Wyrm's terraces, drakes on the ice"
            loading="lazy" decoding="async">
-      <div class="gw-plaque">
-        <img src="img/gw_wordmark.png" alt="Greenwood" loading="lazy" decoding="async">
-      </div>
+      <!-- The carved banner is inside the capture itself; a second plaque laid
+           over the top landed on whatever the scene was saying. -->
     </div>
     <div class="info">
       <span class="tag dev">In Development</span>
@@ -689,9 +688,11 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
         <img src="img/gw_pip.png" alt="Pip" loading="lazy">
       </div>
       <div class="gw-gallery">
-        <img src="img/gw_shot_sea.jpg" alt="The Sundered Sea — rain over an all-water board"
+        <img src="img/gw_shot_camp.jpg" alt="The company makes camp in the Emberdeep"
              loading="lazy" decoding="async">
-        <img src="img/gw_shot_peaks.jpg" alt="The Crown Peaks — a blizzard burying the mountainside"
+        <img src="img/gw_shot_cut.jpg" alt="The company stands before Nocturne in the snow"
+             loading="lazy" decoding="async">
+        <img src="img/gw_shot_sea.jpg" alt="The Sundered Sea — rain over an all-water board"
              loading="lazy" decoding="async">
       </div>
       <a class="btn ghost" href="#contact">Get Launch News</a>
