@@ -42,7 +42,7 @@ with sync_playwright() as pw:
            pg.evaluate("()=>document.documentElement.scrollWidth+' vs '+window.innerWidth"))
         ck('%s: zero page errors' % label, not errs, errs[:2])
         chips = pg.evaluate("()=>[...document.querySelectorAll('.gw-facts li')].map(e=>e.innerText)")
-        ck('%s: four honesty chips render' % label, len(chips) == 4, chips)
+        ck('%s: four fact chips per game card (Greenwood + Reef Currents)' % label, len(chips) == 8, chips)
         txt = pg.evaluate("()=>document.body.innerText")
         ck('%s: says 21 missions, not 15' % label,
            '21-mission' in txt and '15-mission' not in txt)
