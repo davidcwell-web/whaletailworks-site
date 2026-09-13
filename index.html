@@ -7,7 +7,7 @@
 <meta name="google-site-verification" content="owP8878N82KcxifBvKM-wza5xHvphAd_0bREV82fw9s" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Whale Tail Works — Indie Game Studio</title>
-<meta name="description" content="Whale Tail Works LLC — an independent game studio and curated online storefront. XENODEX and The Greenwood Way, both out now on Google Play.">
+<meta name="description" content="Explore XENODEX and The Greenwood Way, out now on Google Play, plus Reef Currents, an upcoming cozy underwater puzzle. Original games from Whale Tail Works LLC.">
 
 <!-- Social cards. Without these a shared link is a bare URL with no preview. -->
 <meta property="og:type" content="website">
@@ -516,6 +516,9 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
 .video-slot img{object-fit:contain;opacity:1}.video-slot span{background:linear-gradient(transparent,rgba(0,0,0,.55));font-size:16px}
 .mark-wrap,.mark-wrap.flash{animation:none!important}.motion-preview{margin:24px 0;background:#0b1929;padding:18px;border-radius:14px}.motion-preview video{display:block;width:100%;max-width:800px;margin:12px auto;border-radius:10px}.motion-preview button{padding:10px 18px;background:#15354b;color:white;border:1px solid #55d9ee;border-radius:8px;cursor:pointer}
 </style>
+<link rel="stylesheet" href="media/game-catalog/games-catalog.css?v=20260913-videos">
+<script defer src="media/game-catalog/games-data.js?v=20260913-videos"></script>
+<script defer src="media/game-catalog/games-catalog.js?v=20260913-videos"></script>
 </head>
 <body>
 <div class="nebula" aria-hidden="true"></div>
@@ -572,6 +575,33 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   <div class="scroll-cue" aria-hidden="true">▾</div>
 </header>
 
+<section id="games" aria-labelledby="game-catalog-heading">
+  <span id="videos" class="catalog-video-anchor" aria-hidden="true"></span>
+  <div class="catalog-heading">
+    <div class="sec-kick">// The Whale Tail Works collection</div>
+    <h2 id="game-catalog-heading">A world for <span class="hl">every mood.</span></h2>
+    <p class="sec-sub">Make first contact. Gather your company. Or take a breath beneath the waves.</p>
+  </div>
+  <div class="catalog-layout">
+    <aside class="catalog-sidebar" aria-label="Browse games">
+      <h3>Browse games</h3>
+      <div class="catalog-filters" aria-label="Filter games">
+        <button type="button" data-game-filter="all" aria-pressed="true">All games <span data-game-count="all">3</span></button>
+        <button type="button" data-game-filter="available" aria-pressed="false">Available now <span data-game-count="available">2</span></button>
+        <button type="button" data-game-filter="coming-soon" aria-pressed="false">Coming soon <span data-game-count="coming-soon">1</span></button>
+        <button type="button" data-game-filter="videos" aria-pressed="false">With videos <span data-game-count="videos">2</span></button>
+      </div>
+      <div class="catalog-sidebar-note">A world for every mood.<p>Strategy, adventure, or a quiet moment under the waves.</p></div>
+    </aside>
+    <div class="catalog-results">
+      <p id="game-filter-announcement" class="catalog-sr" role="status" aria-live="polite"></p>
+      <div id="game-catalog-list" class="catalog-list"></div>
+      <noscript><div class="catalog-noscript"><p>Our games:</p><ul><li><a href="https://play.google.com/store/apps/details?id=net.whaletailworks.xenodex">XENODEX — $2.99 USD on Google Play</a></li><li><a href="https://play.google.com/store/apps/details?id=net.whaletailworks.greenwood">The Greenwood Way — $3.99 USD on Google Play</a></li><li>Reef Currents — coming soon, free with an optional $1.99 upgrade.</li></ul><p>Enable JavaScript to browse screenshots and game details.</p></div></noscript>
+      <p class="catalog-price-disclaimer">Prices in USD. Local store prices may vary.</p>
+    </div>
+  </div>
+</section>
+
 <section id="studio">
   <div class="rv"><div class="sec-kick">// About the studio</div>
   <h2>Small Studio. <span class="hl">Big Worlds.</span></h2>
@@ -613,157 +643,6 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
   </div>
 </section>
 
-<section id="games">
-  <div class="rv"><div class="sec-kick">// Game development showcase</div>
-  <h2>Now Playing & <span class="hl">In The Forge</span></h2>
-  <p class="sec-sub">Two worlds under construction at the works — one counting the Earth, one saving the Greenwood.</p></div>
-
-  <div class="game rv">
-    <div class="art xeno-art">
-      <img class="bgart" src="img/xeno_shot_globe.jpg"
-           alt="XENODEX orbital command — live alien signals burning on a rotating Earth"
-           loading="lazy" decoding="async">
-    </div>
-    <div class="info">
-      <span class="tag live">Out now on Google Play</span>
-      <h3>XENODEX</h3>
-      <div class="genre">strategy · collection · alien invasion</div>
-      <p><i>Earth is being counted.</i> Command A.E.G.I.S. field agents, catalogue 18 alien species across
-      13 worlds, defend your base, and uncover who — or what — is running the count.</p>
-      <ul class="feat">
-        <li>18 species, each with a dossier, a fleet commander and a craft of its own</li>
-        <li>26 field operations — chases, sieges, stakeouts, deductions and first contact</li>
-        <li>Not every species is an enemy: some you answer, some you trade with</li>
-        <li>Craft lighting built from real first-hand encounter reports</li>
-        <li>Premium: $2.99 USD once — no ads, ever</li>
-      </ul>
-      <div class="xeno-gallery">
-        <figure>
-          <img src="img/xeno_shot_hull.jpg" loading="lazy" decoding="async"
-               alt="Hull Run — flying the burning surface of a capital ship between its gun turrets">
-          <figcaption>Hull run</figcaption>
-        </figure>
-        <figure>
-          <img src="img/xeno_shot_trench.jpg" loading="lazy" decoding="async"
-               alt="Crossfire Alley — threading a mass-driver barrage down a Martian canyon">
-          <figcaption>Crossfire alley</figcaption>
-        </figure>
-        <figure>
-          <img src="img/xeno_shot_stalker.jpg" loading="lazy" decoding="async"
-               alt="Dead Still — holding motionless in a moonlit pasture while something hunts the herd">
-          <figcaption>Dead still</figcaption>
-        </figure>
-        <figure>
-          <img src="img/xeno_shot_lattice.jpg" loading="lazy" decoding="async"
-               alt="Common Ground — answering an Arcturian pattern in their own writing system">
-          <figcaption>Common ground</figcaption>
-        </figure>
-        <figure>
-          <img src="img/xeno_shot_dex.jpg" loading="lazy" decoding="async"
-               alt="The XENODEX data centre — the species grid filling in as intel is earned">
-          <figcaption>The dossier</figcaption>
-        </figure>
-        <figure>
-          <img src="img/xeno_shot_file.jpg" loading="lazy" decoding="async"
-               alt="A species file — threat class, intel progress and known capabilities">
-          <figcaption>Species file</figcaption>
-        </figure>
-      </div>
-      <a class="btn primary" href="https://play.google.com/store/apps/details?id=net.whaletailworks.xenodex" id="playLink" target="_blank" rel="noopener">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M3 2.5v19c0 .6.6 1 1.1.7l13.2-8.7c.5-.3.5-1.1 0-1.4L4.1 1.8C3.6 1.5 3 1.9 3 2.5z"/>
-        </svg>Get it on Google Play</a>
-    </div>
-  </div>
-
-  <div class="game rv">
-    <div class="art" style="background:
-      radial-gradient(80% 100% at 30% 100%,rgba(45,212,191,.18),transparent),
-      linear-gradient(160deg,#0d1c14,#091120)">
-      <img class="gw-shot" src="img/gw_shot_wyrm.jpg"
-           alt="The Greenwood Way — the Old Wyrm's terraces, drakes on the ice"
-           loading="lazy" decoding="async">
-      <!-- The carved banner is inside the capture itself; a second plaque laid
-           over the top landed on whatever the scene was saying. -->
-    </div>
-    <div class="info">
-      <span class="tag live">Out now on Google Play</span>
-      <h3>The Greenwood Way</h3>
-      <p class="gw-feat"><strong>$3.99 USD · One-time purchase</strong></p>
-      <div class="genre">turn-based pixel strategy · comedy · 21-mission campaign</div>
-      <p>Eight unlikely heroes, one dying forest, and a very opinionated toad. Isometric battles with
-      real verticality, telegraphed enemies, campfire banter — and a villain who only wanted to be remembered.</p>
-      <p class="gw-feat">Three acts across wildland, drowned sea and frozen peaks · a storm that buries
-      the board while you fight · mercy you can choose, and an ending that remembers every time you did.</p>
-      <p class="gw-feat">Guardians join the company as you meet them on the road, each arriving in an
-      animated scene of their own · played in six languages · pays for itself once and then leaves you alone.</p>
-      <ul class="gw-facts">
-        <li>Plays fully offline</li>
-        <li>No ads, ever</li>
-        <li>No in-app purchases</li>
-        <li>Collects no data</li>
-      </ul>
-      <div class="pixel-strip gw-cast">
-        <img src="img/gw_reg.png" alt="Sir Reginald" loading="lazy">
-        <img src="img/gw_elowen.png" alt="Elowen" loading="lazy">
-        <img src="img/gw_barnaby.png" alt="Barnaby" loading="lazy">
-        <img src="img/gw_mabs.png" alt="Mabs" loading="lazy">
-        <img src="img/gw_sylvai.png" alt="Sylvai" loading="lazy">
-        <img src="img/gw_gruni.png" alt="Gruni" loading="lazy">
-        <img src="img/gw_torvald.png" alt="Torvald" loading="lazy">
-        <img src="img/gw_pip.png" alt="Pip" loading="lazy">
-      </div>
-      <div class="gw-gallery">
-        <img src="img/gw_shot_camp.jpg" alt="The company makes camp in the Emberdeep"
-             loading="lazy" decoding="async">
-        <img src="img/gw_shot_cut.jpg" alt="The company stands before Nocturne in the snow"
-             loading="lazy" decoding="async">
-        <img src="img/gw_shot_sea.jpg" alt="The Sundered Sea — rain over an all-water board"
-             loading="lazy" decoding="async">
-      </div>
-      <a class="btn primary" href="https://play.google.com/store/apps/details?id=net.whaletailworks.greenwood" target="_blank" rel="noopener">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M3 2.5v19c0 .6.6 1 1.1.7l13.2-8.7c.5-.3.5-1.1 0-1.4L4.1 1.8C3.6 1.5 3 1.9 3 2.5z"/>
-        </svg>Get it on Google Play</a>
-    </div>
-  </div>
-  <div class="game rv">
-    <div class="art" style="background:
-      radial-gradient(80% 100% at 30% 100%,rgba(34,211,238,.18),transparent),
-      linear-gradient(160deg,#07202b,#091120)">
-      <img class="gw-shot" src="img/reef_shot_opening.jpg"
-           alt="Reef Currents — a sunlit reef with glowing coral and an anemone waiting for water"
-           loading="lazy" decoding="async">
-    </div>
-    <div class="info">
-      <span class="tag dev">In development</span>
-      <h3>Reef Currents</h3>
-      <p class="gw-feat"><strong>Free to play · one $1.99 purchase removes ads and unlocks offline play</strong></p>
-      <div class="genre">cozy underwater puzzle · all ages · 30–60 second boards</div>
-      <p>Turn the channel stones, guide a fresh current from the inlet to every anemone, then release it and
-      watch the reef come alive. No timer, no lives, no move limit. Hints and undo are always free.</p>
-      <p class="gw-feat">Thirty hand-set boards across six reef gardens, then an endless reef that keeps
-      growing · shells, crabs, kelp and small fish, with a shark, an octopus or a whale's fin passing the edge now
-      and then · a journal that fills as you meet them.</p>
-      <p class="gw-feat">Classical music rendered for the game — Bach, Pachelbel and an original pavane — and a
-      turn sound that climbs a little scale as you play.</p>
-      <ul class="gw-facts">
-        <li>Free play needs a connection · offline play comes with the purchase</li>
-        <li>Occasional ads between boards, never during one</li>
-        <li>Non-personalised ads, suitable for children</li>
-        <li>One purchase, ever: remove ads for good and play offline</li>
-      </ul>
-      <div class="gw-gallery">
-        <img src="img/reef_shot_board.jpg" alt="A five-by-five board of channel stones under water" loading="lazy" decoding="async">
-        <img src="img/reef_shot_complete.jpg" alt="A little life returns — the habitat restored card" loading="lazy" decoding="async">
-        <img src="img/reef_shot_map.jpg" alt="Your little reef — the map of restored boards" loading="lazy" decoding="async">
-      </div>
-      <a class="btn ghost" href="reef-currents-privacy.html">Privacy policy</a>
-    </div>
-  </div>
-</section>
-
-<section id="videos"><h2>Watch the Games</h2><p>Actual gameplay from Whale Tail Works. Choose a video to load YouTube. Prices shown are USD; local store prices may vary.</p><div class="motion-preview"><p>Gameplay preview · muted loop</p><video id="ambient-gameplay" muted loop playsinline preload="none" poster="img/xeno_shot_hull.jpg" src="media/gameplay-loop.mp4"></video><button id="motion-toggle" type="button">Play preview</button></div><div class="video-grid"><article class="video-card"><h3>XENODEX · Trailer</h3><div class="video-slot"><button type="button" data-video="CyElBPor1bs" aria-label="Play XENODEX · Trailer"><img src="img/xeno_shot_hull.jpg" alt="" loading="lazy"><span>▶ Watch video</span></button></div><p><a href="https://www.youtube.com/watch?v=CyElBPor1bs" target="_blank" rel="noopener">Watch on YouTube</a></p></article><article class="video-card"><h3>Greenwood · Trailer</h3><div class="video-slot"><button type="button" data-video="CvNTH8N5w3M" aria-label="Play Greenwood · Trailer"><img src="media/greenwood-trailer.jpg" alt="" loading="lazy"><span>▶ Watch video</span></button></div><p><a href="https://www.youtube.com/watch?v=CvNTH8N5w3M" target="_blank" rel="noopener">Watch on YouTube</a></p></article><article class="video-card"><h3>XENODEX · Hull Run</h3><div class="video-slot"><button type="button" data-video="8JpWppoVjAU" aria-label="Play XENODEX · Hull Run"><img src="img/xeno_shot_hull.jpg" alt="" loading="lazy"><span>▶ Watch video</span></button></div><p><a href="https://www.youtube.com/watch?v=8JpWppoVjAU" target="_blank" rel="noopener">Watch on YouTube</a></p></article><article class="video-card"><h3>XENODEX · Base Defense</h3><div class="video-slot"><button type="button" data-video="aYksZG8_XV4" aria-label="Play XENODEX · Base Defense"><img src="img/xeno_shot_globe.jpg" alt="" loading="lazy"><span>▶ Watch video</span></button></div><p><a href="https://www.youtube.com/watch?v=aYksZG8_XV4" target="_blank" rel="noopener">Watch on YouTube</a></p></article><article class="video-card"><h3>Greenwood · Battles</h3><div class="video-slot"><button type="button" data-video="FMc9mh3uJ_U" aria-label="Play Greenwood · Battles"><img src="media/greenwood-battles.jpg" alt="" loading="lazy"><span>▶ Watch video</span></button></div><p><a href="https://www.youtube.com/watch?v=FMc9mh3uJ_U" target="_blank" rel="noopener">Watch on YouTube</a></p></article></div></section>
 <section id="store">
   <div class="rv"><div class="sec-kick">// eBay storefront</div>
   <h2>The <span class="hl">Trading Post</span></h2>
@@ -848,6 +727,11 @@ footer::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2
     <span>whaletailworks.net</span>
   </div>
 </footer>
+
+<dialog id="game-dialog" class="game-modal" aria-labelledby="game-dialog-title" aria-describedby="game-dialog-summary">
+  <div class="game-modal-topbar"><span>Explore the game</span><button type="button" id="game-dialog-close" aria-label="Close game details" autofocus>Close <span aria-hidden="true">×</span></button></div>
+  <div id="game-dialog-content"></div>
+</dialog>
 
 <script>
 document.querySelectorAll('[data-video]').forEach(button=>button.addEventListener('click',()=>{
@@ -1241,6 +1125,7 @@ function draw(t){ctx.clearRect(0,0,c.width,c.height);const phase=(t%8500)/8500;c
 for(let x=0;x<source.width;x+=2){const k=Math.max(0,(x/source.width-.58)/.42);const offset=wave*k*k;ctx.drawImage(source,x,0,Math.min(2,source.width-x),source.height,x,20+offset,2.2,source.height)}requestAnimationFrame(draw)}requestAnimationFrame(draw);
 };
 const v=document.querySelector('#ambient-gameplay'),button=document.querySelector('#motion-toggle');let pausedByUser=false;
+if(!v||!button)return; // The gameplay loop now lives in the game popup.
 function label(){button.textContent=v.paused?'Play preview':'Pause preview'}
 button.onclick=()=>{pausedByUser=!v.paused;if(v.paused)v.play().catch(()=>{});else v.pause()};v.onplay=label;v.onpause=label;
 new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!reduced.matches&&!pausedByUser)v.play().catch(label);else v.pause()},{threshold:.4}).observe(v);

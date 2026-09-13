@@ -1,0 +1,142 @@
+/* Scoped to the catalog and its popup. The site's hero, navigation and starfield
+   retain their existing markup, CSS and animation code. */
+@font-face{font-family:OutfitCatalog;src:url('outfit.ttf') format('truetype');font-display:swap}
+#games{scroll-margin-top:70px;padding-top:84px;padding-bottom:66px}
+#games .catalog-heading .sec-sub{margin-bottom:34px;max-width:690px}
+#games .catalog-layout{display:grid;grid-template-columns:158px minmax(0,1fr);gap:25px;font-family:OutfitCatalog,'Space Grotesk',sans-serif}
+#games .catalog-sidebar{padding-top:17px;border-top:1px solid var(--line)}
+#games .catalog-sidebar h3{font-size:11px;letter-spacing:.13em;font-weight:600;text-transform:uppercase;color:#abbfd6;margin:0 0 12px}
+#games .catalog-filters{display:flex;flex-direction:column;gap:6px}
+#games .catalog-filters button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;text-align:left;padding:10px 12px;border:1px solid transparent;border-radius:8px;background:transparent;color:#b9cbdf;font:inherit;font-size:13px;cursor:pointer}
+#games .catalog-filters button[aria-pressed="true"]{background:#183346;border-color:#315872;color:#adecf3}
+#games .catalog-filters button:hover{background:#163044}
+#games .catalog-filters button span{color:#b3c9dd;font-size:12px}
+#games .catalog-sidebar-note{border-top:1px solid var(--line);padding-top:21px;margin-top:25px;color:#c1d1e5;font-size:12px}
+#games .catalog-sidebar-note p{color:#9bafc9;font-size:12px;margin-top:8px}
+#games .catalog-list{display:flex;flex-direction:column;gap:16px}
+#games .catalog-row[hidden]{display:none}
+#games .catalog-row{display:grid;grid-template-columns:34% minmax(0,1fr);min-height:198px;background:rgba(17,28,44,.96);border:1px solid #2b3b51;border-radius:17px;overflow:hidden;box-shadow:0 14px 35px #00000018}
+#games .catalog-cover{position:relative;min-height:198px;background:#0a1420;overflow:hidden}
+#games .catalog-cover img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+#games .catalog-cover.contain{background:#06160f}
+#games .catalog-cover.contain img{object-fit:contain}
+#games .catalog-status{position:absolute;z-index:1;left:10px;top:10px;display:flex;align-items:center;gap:6px;padding:4px 7px;border:1px solid #47776b;border-radius:5px;background:#081d1cf0;color:#bcf1da;font-size:10px;line-height:1.4;font-weight:600;letter-spacing:.06em}
+#games .catalog-status:before{content:'';background:currentColor;width:5px;height:5px;border-radius:50%}
+#games .catalog-status.coming-soon{background:#14263bf0;border-color:#627b9a;color:#d0e0f6}
+#games .catalog-row-body{display:flex;flex-direction:column;min-width:0;padding:19px 22px}
+#games .catalog-genre{color:var(--game-accent,#a5dce9);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+#games .catalog-row h3{font-size:25px;line-height:1.15;font-weight:600;letter-spacing:-.025em;margin:6px 0 10px;color:#f0f5fc}
+#games .catalog-summary{font-size:13px;line-height:1.6;color:#bfccde;max-width:500px}
+#games .catalog-row-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:17px;margin-top:auto}
+#games .catalog-price{font-size:14px;line-height:1.4;color:#eff5fe;font-weight:600}
+#games .catalog-price-note{font-size:11px;line-height:1.5;color:#a5bbd4;margin-top:4px;max-width:220px}
+#games .catalog-explore{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:44px;flex-shrink:0;padding:10px 15px;border:1px solid #45627d;border-radius:8px;background:#1a2d43;color:#eff6ff;cursor:pointer;font:inherit;font-size:13px;font-weight:500}
+#games .catalog-explore span{color:var(--game-accent,#87dded);font-size:17px}
+#games .catalog-explore:hover{background:#26445c;border-color:#87d1dc}
+#games .catalog-price-disclaimer{font-size:11px;color:#9dafc8;margin-top:15px}
+#games .catalog-empty,#games .catalog-noscript{padding:24px;color:#c4d4e9;border:1px solid var(--line);border-radius:12px;background:#0d1b2d}
+#games .catalog-noscript ul{padding-left:20px;margin:12px 0}
+#games .catalog-noscript a{color:#99eaf0}
+.catalog-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.game-modal{width:min(960px,calc(100% - 36px));max-width:none;max-height:calc(100vh - 36px);max-height:calc(100dvh - 36px);margin:auto;padding:0;background:#0c1828;color:#edf3fc;border:1px solid #46647a;border-radius:20px;box-shadow:0 30px 110px #000b;font-family:OutfitCatalog,'Space Grotesk',sans-serif;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#53728a #0c1828}
+.game-modal::backdrop{background:rgba(2,7,16,.8);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.game-modal .game-modal-topbar{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 23px;border-bottom:1px solid #2d4258;background:#0c1828}
+.game-modal .game-modal-topbar>span{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#9fb8d1}
+.game-modal #game-dialog-close{display:flex;align-items:center;gap:13px;min-height:44px;padding:9px 12px;border:1px solid #48647e;border-radius:8px;background:#182b40;color:#f2f7ff;font:inherit;font-size:13px;cursor:pointer}
+.game-modal #game-dialog-close span{font:400 24px/1 system-ui}
+.game-modal .game-modal-intro{display:grid;grid-template-columns:43% minmax(0,1fr);gap:25px;padding:26px}
+.game-modal .game-modal-cover{display:block;width:100%;height:100%;max-height:315px;min-height:220px;object-fit:cover;border-radius:12px;background:#07161d}
+.game-modal .game-modal-cover.contain{object-fit:contain;background:#06170f}
+.game-modal .game-modal-status{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#a0e3dd}
+.game-modal #game-dialog-title{font:600 34px/1.1 OutfitCatalog,'Space Grotesk',sans-serif;letter-spacing:-.02em;margin:11px 0 15px;color:#f0f6fd}
+.game-modal #game-dialog-summary{font-size:15px;line-height:1.6;color:#c1d2e5;margin:0 0 17px}
+.game-modal .game-modal-price{font-weight:600;font-size:17px;margin-bottom:4px}
+.game-modal .game-modal-price-note{font-size:12px;color:#a8bed8;margin-bottom:17px}
+.game-modal .game-modal-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.game-modal .game-modal-store{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;background:#9ae6ec;color:#09232e;border:1px solid #9ae6ec;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px}
+.game-modal .game-modal-privacy{display:inline-block;padding:9px 0;color:#a8e6ef;font-size:12px}
+.game-modal .game-modal-soon{color:#d0dbef;font-size:13px}
+.game-modal .game-modal-body{padding:0 26px 30px}
+.game-modal .game-modal-body p{color:#bfcde0;font-size:14px;line-height:1.8;margin-bottom:16px}
+.game-modal .game-modal-body h3{color:#edf5ff;font-size:20px;line-height:1.3;font-weight:500;margin:25px 0 14px}
+.game-modal .game-modal-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 28px;padding:18px 18px 18px 35px;border:1px solid #29465c;border-radius:12px;background:#122237;color:#bdcede;font-size:13px;line-height:1.7}
+.game-modal .game-modal-features li::marker{color:#8ce5d7}
+.game-modal .game-modal-cast{display:flex;gap:12px;flex-wrap:wrap}
+.game-modal .game-modal-cast figure{margin:0;width:70px;text-align:center;font-size:11px;color:#bbd0e3}
+.game-modal .game-modal-cast img{width:60px;height:60px;object-fit:contain;image-rendering:pixelated;background:#12283a;border:1px solid #2d4a60;border-radius:9px;padding:4px}
+.game-modal .game-modal-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 14px}
+.game-modal .game-modal-gallery figure{margin:0;min-width:0}
+.game-modal .game-modal-gallery img{width:100%;height:260px;object-fit:contain;background:#081420;border:1px solid #293e51;border-radius:10px;display:block}
+.game-modal .game-modal-gallery figcaption{font-size:12px;color:#aac2da;margin-top:7px}
+.game-modal .game-modal-trailer{background:#06121e;border:1px solid #34516b;border-radius:12px;overflow:hidden;aspect-ratio:16/9;position:relative;max-width:740px}
+.game-modal .game-modal-trailer button,.game-modal .game-modal-trailer-link{display:block;width:100%;height:100%;border:0;position:relative;background:#06121e;color:#fff;cursor:pointer;text-decoration:none}
+.game-modal .game-modal-trailer img{display:block;width:100%;height:100%;object-fit:contain;opacity:.7}
+.game-modal .game-modal-trailer button span,.game-modal .game-modal-trailer-link span{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;text-shadow:0 2px 6px #000;font:600 20px OutfitCatalog,sans-serif}
+.game-modal .game-modal-trailer iframe{width:100%;height:100%;border:0;display:block}
+.game-modal .game-modal-video-link{margin-top:10px!important;font-size:12px!important}
+.game-modal .game-modal-video-link a{color:#a5e6ec}
+.game-modal .game-modal-notice{border-left:2px solid #77c3d3;padding-left:13px;font-size:12px!important;margin-top:12px}
+.game-modal button:focus-visible,.game-modal a:focus-visible,#games button:focus-visible{outline:3px solid #f3d68c;outline-offset:3px}
+@media(max-width:900px){
+ #games .catalog-layout{grid-template-columns:1fr;gap:20px}
+ #games .catalog-sidebar{padding-top:0;border:0}
+ #games .catalog-sidebar h3,#games .catalog-sidebar-note{display:none}
+ #games .catalog-filters{flex-direction:row;flex-wrap:wrap;gap:7px}
+ #games .catalog-filters button{width:auto;gap:15px}
+ .game-modal .game-modal-intro{grid-template-columns:40% minmax(0,1fr);gap:19px}
+ .game-modal .game-modal-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ #games{padding-top:64px;padding-bottom:40px}
+ #games .catalog-heading .sec-kick{font-size:10px;letter-spacing:.14em}
+ #games .catalog-heading h2{font-size:30px;line-height:1.2}
+ #games .catalog-heading .sec-sub{font-size:14px;margin-bottom:23px}
+ #games .catalog-filters button{font-size:12px;padding:9px 8px;gap:8px}
+ #games .catalog-filters button span{font-size:11px}
+ #games .catalog-row{display:flex;flex-direction:column}
+ #games .catalog-cover{min-height:0;aspect-ratio:1.95}
+ #games .catalog-row-body{padding:20px}
+ #games .catalog-row h3{font-size:26px}
+ #games .catalog-summary{font-size:14px}
+ #games .catalog-row-bottom{align-items:stretch;flex-direction:column;gap:15px}
+ #games .catalog-price-note{max-width:none;font-size:12px}
+ #games .catalog-status{font-size:11px}
+ #games .catalog-explore{font-size:14px}
+ .game-modal{width:calc(100% - 18px);max-height:calc(100vh - 18px);max-height:calc(100dvh - 18px);border-radius:14px}
+ .game-modal .game-modal-topbar{padding:9px 15px}
+ .game-modal .game-modal-intro{display:flex;flex-direction:column;padding:17px;gap:20px}
+ .game-modal .game-modal-cover{height:auto;min-height:0;max-height:none;aspect-ratio:1.85}
+ .game-modal #game-dialog-title{font-size:30px}
+ .game-modal .game-modal-body{padding:0 17px 25px}
+ .game-modal .game-modal-features{grid-template-columns:1fr}
+ .game-modal .game-modal-gallery{grid-template-columns:1fr}
+ .game-modal .game-modal-gallery img{height:340px}
+ .game-modal .game-modal-trailer button span{font-size:17px}
+ .game-modal .game-modal-cast{gap:9px}
+ .game-modal .game-modal-cast figure{width:61px}
+}
+@media(prefers-reduced-motion:reduce){.game-modal,#games{scroll-behavior:auto}}
+
+/* Video catalog: keep footage with its game and preserve portrait Shorts. */
+#games{position:relative}
+#games .catalog-video-anchor{position:absolute;top:0;scroll-margin-top:70px}
+.game-modal .game-modal-watch{min-height:44px;padding:10px 14px;border:1px solid #45627d;border-radius:8px;background:#1a2d43;color:#d8f3fa;cursor:pointer;font:500 13px OutfitCatalog,sans-serif}
+.game-modal .game-modal-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:740px}
+.game-modal .game-modal-video-card{min-width:0;background:#102136;border:1px solid #2b465e;border-radius:12px;overflow:hidden;align-self:start}
+.game-modal .game-modal-video-card.is-trailer{grid-column:1/-1}
+.game-modal .game-modal-video-card h4{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:12px 14px;color:#e4f1ff;font:500 15px/1.4 OutfitCatalog,sans-serif;min-height:48px}
+.game-modal .game-modal-video-card h4 span{font-size:11px;color:#98c6d8;font-weight:400}
+.game-modal .game-modal-video-card .game-modal-trailer{border:0;border-radius:0;max-width:none}
+.game-modal .game-modal-video-card.is-short .game-modal-trailer{aspect-ratio:9/16}
+.game-modal .game-modal-video-card .game-modal-video-link{padding:0 14px;margin-bottom:12px;font-size:12px}
+.game-modal .game-modal-preview{display:grid;grid-template-columns:140px auto;align-items:center;gap:0 16px;max-width:420px;margin:0 0 22px;background:#112338;border:1px solid #2b465e;border-radius:12px;overflow:hidden}
+.game-modal .game-modal-preview video{grid-row:1/3;width:140px;aspect-ratio:16/9;object-fit:cover}
+.game-modal .game-modal-preview button{justify-self:start;align-self:end;border:1px solid #45627d;border-radius:6px;background:#1a2d43;color:#d8f3fa;font:500 12px OutfitCatalog,sans-serif;min-height:36px;padding:7px 10px;cursor:pointer}
+.game-modal .game-modal-preview>span{align-self:start;font-size:11px;color:#a6bed4;padding-top:2px}
+@media(max-width:600px){
+ .game-modal .game-modal-video-grid{grid-template-columns:1fr;gap:18px}
+ .game-modal .game-modal-video-card.is-short{width:min(100%,300px);justify-self:center}
+ .game-modal .game-modal-preview{grid-template-columns:110px auto;gap:0 10px}
+ .game-modal .game-modal-preview video{width:110px}
+ .game-modal .game-modal-preview>span{font-size:10px}
+}
