@@ -1,3 +1,12 @@
+## Published - 2026-09-13/14
+
+The catalog homepage described below is live as commit b70336a on main (fast-forward, studio
+identity). Live checks passed: homepage, all catalog assets, privacy pages, app-ads.txt,
+`tools/sitecheck_media.py` at 1440/390/320 with zero page errors. Shared record:
+`../AI-HANDOFFS/whaletailworks-site/2026-09-14-0010-published-catalog-live.md`.
+Commit as `Whale Tail Works LLC <263201777+davidcwell-web@users.noreply.github.com>` (the
+repo-local identity); never push commits authored with a personal name or address.
+
 ## Current handoff — 2026-09-13: owner asks Claude to finish publication
 
 Publication remains authorized; Codex stopped uploading and handed completion
