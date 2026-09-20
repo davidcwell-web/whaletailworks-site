@@ -45,6 +45,10 @@ playback on the deployed HTTPS site.
   Existing prompts and provenance remain in the Reef Currents store-media records.
 - XENODEX artwork, all gameplay captures, whale and other site images use the
   existing website assets. No new generated or purchased artwork was introduced.
+- `last-residents-cover.webp` and `img/lr_shot_*.jpg`: size/format conversions of
+  the room paintings and the arrival painting from *The Last Residents* (generated
+  with OpenAI image generation during that project; prompts and provenance stay in
+  the game project). Added 2026-09-20 for the coming-soon card. No video yet.
 - `outfit.ttf`: previously bundled Outfit font. Retain `OFL-Outfit.txt` with it.
   Original copyright and the SIL Open Font License are included there.
 

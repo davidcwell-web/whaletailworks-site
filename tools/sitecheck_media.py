@@ -12,6 +12,7 @@ EXPECTED = {
     'xenodex': ['CyElBPor1bs', '8JpWppoVjAU', 'aYksZG8_XV4'],
     'greenwood': ['CvNTH8N5w3M', 'FMc9mh3uJ_U'],
     'reef-currents': [],
+    'last-residents': [],
 }
 
 with sync_playwright() as pw:
@@ -23,7 +24,7 @@ with sync_playwright() as pw:
         page.on('request', lambda r: youtube.append(r.url) if 'youtube' in r.url else None)
         page.goto(SITE.split('#')[0] + '#games')
         page.locator('.catalog-row').last.wait_for(state='attached')
-        assert page.locator('.catalog-row').count() == 3
+        assert page.locator('.catalog-row').count() == 4
         assert page.locator('section#videos').count() == 0
         assert not youtube, 'YouTube contacted before choosing a video'
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')

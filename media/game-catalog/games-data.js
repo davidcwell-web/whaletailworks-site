@@ -92,5 +92,32 @@ window.WTW_GAME_CATALOG = [
       {src:'img/reef_shot_map.jpg',caption:'Your little reef'}
     ],
     privacy: 'reef-currents-privacy.html'
+  },
+  {
+    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'coming-soon',
+    accent: '#9fc0dc', price: 'Coming soon',
+    priceNote: 'One-time purchase · No ads',
+    summary: 'You came to pick up your girlfriend. The lights are on. Nobody answers.',
+    cover: 'media/game-catalog/last-residents-cover.webp',
+    coverAlt: 'The Last Residents — a house on a hill above a lit town, rain at every window',
+    paragraphs: [
+      'A house that remembers. Every room holds something that happened in it, and something that is still waiting. Walk in, look closely, and work out what each room wants before it lets you go further.',
+      'Point-and-click puzzles that use the whole house: old tapes and older wiring, a phone that only finds a signal in certain places, notes nobody meant you to read, and a few things that move when you are not looking.',
+      'Painted rooms, a storm that never quite stops, and a story that starts with an ordinary evening and ends somewhere else entirely.'
+    ],
+    features: [
+      'Planned as a premium game: buy once, own it. No ads, no in-app purchases.',
+      'Plays fully offline.',
+      'Puzzles with no timers and no lives. Every mistake has a way back.',
+      'A spooky mystery for teens and up. Quiet more often than loud.'
+    ],
+    screenshots: [
+      {src:'img/lr_shot_kitchen.jpg',caption:'The kitchen, after dark'},
+      {src:'img/lr_shot_hall.jpg',caption:'The stair hall'},
+      {src:'img/lr_shot_lounge.jpg',caption:'The sitting room'},
+      {src:'img/lr_shot_study.jpg',caption:'A study nobody uses'},
+      {src:'img/lr_shot_garage.jpg',caption:'The garage'}
+    ],
+    privacy: 'last-residents-privacy.html'
   }
 ];
