@@ -1,4 +1,8 @@
 ## Published - 2026-09-13/14
+## 2026-10-06 (later) — PUBLISHED to Production (Claude Code, owner-directed)
+
+"Publish 12 changes" confirmed in Publishing overview; console reads "Last published on October 6, 2026". The blank content-rating draft was completed with the Sept 14 answers and sent for review as a separate change; after approval it needs one more Publish click. Post-publish steps: `store/LAUNCH-KIT.md` Part 3.
+
 
 The catalog homepage described below is live as commit b70336a on main (fast-forward, studio
 identity). Live checks passed: homepage, all catalog assets, privacy pages, app-ads.txt,
