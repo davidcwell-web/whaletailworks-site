@@ -14,6 +14,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 APPS = [
     ('XENODEX (LLC)', 'net.whaletailworks.xenodex'),
     ('The Greenwood Way', 'net.whaletailworks.greenwood'),
+    ('Reef Currents', 'net.whaletailworks.reefcurrents'),
     ('XENODEX (personal, retired)', 'com.davidcwell.xenodex'),
 ]
 PAT = {

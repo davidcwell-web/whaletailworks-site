@@ -69,9 +69,10 @@ window.WTW_GAME_CATALOG = [
     privacy: 'greenwood-privacy.html'
   },
   {
-    id: 'reef-currents', title: 'Reef Currents', genre: 'Cozy underwater puzzle', status: 'coming-soon',
-    accent: '#99e0e8', price: 'Free at launch',
+    id: 'reef-currents', title: 'Reef Currents', genre: 'Cozy underwater puzzle', status: 'available',
+    accent: '#99e0e8', price: 'Free',
     priceNote: 'Optional $1.99: remove ads + play offline',
+    store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.reefcurrents',
     summary: 'Turn the stones, guide the water, and bring a quiet corner of the ocean to life.',
     cover: 'media/game-catalog/reef-cover.webp',
     coverAlt: 'Reef Currents — a manta ray gliding over a sunlit coral garden',
@@ -81,7 +82,7 @@ window.WTW_GAME_CATALOG = [
       'Classical music rendered for the game — Bach, Pachelbel and an original pavane — and a turn sound that climbs a little scale as you play.'
     ],
     features: [
-      'Planned for launch: free play needs a connection; offline play comes with the purchase.',
+      'Free play needs a connection; offline play comes with the purchase.',
       'Ads between boards, never during one.',
       'Non-personalised ads, suitable for children.',
       'One $1.99 purchase removes ads for good and unlocks offline play.'
