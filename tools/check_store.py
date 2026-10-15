@@ -15,6 +15,7 @@ APPS = [
     ('XENODEX (LLC)', 'net.whaletailworks.xenodex'),
     ('The Greenwood Way', 'net.whaletailworks.greenwood'),
     ('Reef Currents', 'net.whaletailworks.reefcurrents'),
+    ('The Last Residents', 'net.whaletailworks.lastresidents'),
     ('XENODEX (personal, retired)', 'com.davidcwell.xenodex'),
 ]
 PAT = {

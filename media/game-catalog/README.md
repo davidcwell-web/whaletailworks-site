@@ -18,6 +18,8 @@ Edit `media/game-catalog/games-data.js`. Add one object to the array with:
 - `privacy`: relative privacy-page URL.
 - Optional `videos: [{id, title, poster, short}]` using YouTube video IDs.
   Set `short: true` for a vertical 9:16 Short. Trailers use 16:9.
+  An entry with `src` instead of `id` is a silent gameplay file served by this
+  site (`{src, title, poster, short}`); it plays in place and contacts nothing else.
 - Optional `preview: {src, poster}` for a local muted gameplay loop.
 - Optional `heroes: [{src, name}]` for a character gallery.
 
@@ -48,7 +50,12 @@ playback on the deployed HTTPS site.
 - `last-residents-cover.webp` and `img/lr_shot_*.jpg`: size/format conversions of
   the room paintings and the arrival painting from *The Last Residents* (generated
   with OpenAI image generation during that project; prompts and provenance stay in
-  the game project). Added 2026-09-20 for the coming-soon card. No video yet.
+  the game project). Added 2026-09-20 for the coming-soon card.
+- `reef-currents-gameplay.mp4` / `.jpg` and `last-residents-gameplay.mp4` / `.jpg`
+  (2026-10-13): silent screen recordings of real play, cut with ffmpeg. Reef from
+  the 1.0.0 web export (title, boards 1 and 2); The Last Residents from the ship-34
+  package (title, arrival, kitchen, stair hall, sitting room, study, garage: the
+  rooms already shown in its screenshots). Nothing added, retouched or generated.
 - `outfit.ttf`: previously bundled Outfit font. Retain `OFL-Outfit.txt` with it.
   Original copyright and the SIL Open Font License are included there.
 

@@ -37,17 +37,19 @@
     if(filter==='videos')history.replaceState(null,'',location.pathname+location.search+'#videos');
     else if(location.hash==='#videos')history.replaceState(null,'',location.pathname+location.search+'#games');
   }));
+  const videoKey=v=>v.id||v.src;
+  const videoKind=v=>v.src?'Gameplay':v.short?'Short':'Trailer';
   function videoPoster(v,g){
     const url='https://www.youtube.com/watch?v='+encodeURIComponent(v.id);
-    const inner=`<img src="${escape(v.poster)}" alt="" loading="lazy"><span>▶ ${v.short?'Watch Short':'Watch trailer'}</span>`;
-    return location.protocol==='file:'
+    const inner=`<img src="${escape(v.poster)}" alt="" loading="lazy"><span>▶ ${v.src?'Watch gameplay':v.short?'Watch Short':'Watch trailer'}</span>`;
+    return location.protocol==='file:'&&!v.src
       ?`<a class="game-modal-trailer-link" href="${url}" target="_blank" rel="noopener" aria-label="Watch ${escape(g.title)} — ${escape(v.title)} on YouTube">${inner}</a>`
-      :`<button type="button" data-game-video="${escape(v.id)}" aria-label="Play ${escape(g.title)} — ${escape(v.title)}">${inner}</button>`;
+      :`<button type="button" data-game-video="${escape(videoKey(v))}" aria-label="Play ${escape(g.title)} — ${escape(v.title)}">${inner}</button>`;
   }
   function videoSection(g){
     if(!g.videos?.length)return '';
     const preview=g.preview?`<div class="game-modal-preview"><video muted loop playsinline preload="none" poster="${escape(g.preview.poster)}" src="${escape(g.preview.src)}" aria-label="${escape(g.title)} muted gameplay preview"></video><button type="button" data-preview-toggle>Play preview</button><span>Muted gameplay preview</span></div>`:'';
-    return `<div class="game-modal-videos" aria-labelledby="game-videos-heading"><h3 id="game-videos-heading" tabindex="-1">Watch ${escape(g.title)}</h3><p>Trailers and short moments from the game. Choose a video to play.</p>${preview}<div class="game-modal-video-grid">${g.videos.map(v=>`<article class="game-modal-video-card ${v.short?'is-short':'is-trailer'}"><h4>${escape(v.title)} <span>${v.short?'Short':'Trailer'}</span></h4><div class="game-modal-trailer" data-video-slot="${escape(v.id)}">${videoPoster(v,g)}</div><p class="game-modal-video-link"><a href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener" aria-label="Watch ${escape(g.title)} — ${escape(v.title)} on YouTube">Watch on YouTube ↗</a></p></article>`).join('')}</div></div>`;
+    return `<div class="game-modal-videos" aria-labelledby="game-videos-heading"><h3 id="game-videos-heading" tabindex="-1">Watch ${escape(g.title)}</h3><p>Trailers and short moments from the game. Choose a video to play.</p>${preview}<div class="game-modal-video-grid">${g.videos.map(v=>`<article class="game-modal-video-card ${v.short?'is-short':'is-trailer'}"><h4>${escape(v.title)} <span>${videoKind(v)}</span></h4><div class="game-modal-trailer" data-video-slot="${escape(videoKey(v))}">${videoPoster(v,g)}</div>${v.src?'':`<p class="game-modal-video-link"><a href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener" aria-label="Watch ${escape(g.title)} — ${escape(v.title)} on YouTube">Watch on YouTube ↗</a></p>`}</article>`).join('')}</div></div>`;
   }
   function scrollToVideos(){
     const heading=content.querySelector('#game-videos-heading');
@@ -88,13 +90,22 @@
     const button=event.target.closest('[data-game-video]');
     if(!button)return;
     const g=games.find(g=>g.id===activeGame);
-    const v=g?.videos?.find(v=>v.id===button.dataset.gameVideo);
+    const v=g?.videos?.find(v=>videoKey(v)===button.dataset.gameVideo);
     if(!v)return;
     pausePreview();
     content.querySelectorAll('[data-video-slot]').forEach(slot=>{
-      const previous=g.videos.find(v=>v.id===slot.dataset.videoSlot);
-      if(slot.querySelector('iframe'))slot.innerHTML=videoPoster(previous,g);
+      const previous=g.videos.find(v=>videoKey(v)===slot.dataset.videoSlot);
+      if(slot.querySelector('iframe,video'))slot.innerHTML=videoPoster(previous,g);
     });
+    if(v.src){
+      // A gameplay file served by this site: nothing is contacted but the site itself.
+      const player=document.createElement('video');
+      player.src=v.src;player.poster=v.poster;player.controls=true;player.autoplay=true;player.muted=true;player.loop=true;player.playsInline=true;
+      player.setAttribute('aria-label',g.title+' — '+v.title+' (silent gameplay)');
+      button.replaceWith(player);
+      closeButton.focus({preventScroll:true});
+      return;
+    }
     const frame=document.createElement('iframe');
     frame.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v.id)+'?autoplay=1';
     frame.title=g.title+' — '+v.title;
@@ -125,7 +136,7 @@
   function closeUI(){
     stopPreview();
     if(dialog.open)dialog.close();
-    content.replaceChildren(); // Destroy any iframe to stop its video and audio.
+    content.replaceChildren(); // Destroy any iframe or player to stop its video and audio.
     activeGame=null;
     if(locked){
       const position=locked;locked=null;
@@ -151,7 +162,7 @@
   dialog.addEventListener('cancel',event=>{event.preventDefault();requestClose();});
   dialog.addEventListener('keydown',event=>{
     if(event.key!=='Tab')return;
-    const stops=[...dialog.querySelectorAll('button:not([disabled]),a[href],iframe')].filter(el=>el.getClientRects().length);
+    const stops=[...dialog.querySelectorAll('button:not([disabled]),a[href],iframe,video[controls]')].filter(el=>el.getClientRects().length);
     const first=stops[0],last=stops[stops.length-1];
     if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}

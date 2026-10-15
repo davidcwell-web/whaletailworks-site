@@ -11,8 +11,8 @@ SITE = os.environ.get('GW_SITE', (Path(__file__).resolve().parents[1] / 'index.h
 EXPECTED = {
     'xenodex': ['CyElBPor1bs', '8JpWppoVjAU', 'aYksZG8_XV4'],
     'greenwood': ['CvNTH8N5w3M', 'FMc9mh3uJ_U'],
-    'reef-currents': [],
-    'last-residents': [],
+    'reef-currents': ['media/game-catalog/reef-currents-gameplay.mp4'],
+    'last-residents': ['media/game-catalog/last-residents-gameplay.mp4'],
 }
 
 with sync_playwright() as pw:
@@ -32,23 +32,36 @@ with sync_playwright() as pw:
             page.locator(f'[data-explore-game="{game}"]').click()
             page.locator('#game-dialog[open]').wait_for()
             assert page.locator('[data-video-slot]').evaluate_all('(es)=>es.map(e=>e.dataset.videoSlot)') == ids
-            if ids and not SITE.startswith('file:'):
+            local = [v for v in ids if v.endswith('.mp4')]
+            for video in local:  # gameplay files served by the site itself
+                before = len(youtube)
+                page.locator(f'[data-game-video="{video}"]').click()
+                assert page.locator('#game-dialog iframe').count() == 0
+                assert page.locator('#game-dialog video[controls]').count() == 1
+                assert page.locator('#game-dialog video[controls]').get_attribute('src') == video
+                if not SITE.startswith('file:'):
+                    page.wait_for_function("document.querySelector('#game-dialog video[controls]').currentTime > 0.3")
+                assert len(youtube) == before, 'A local gameplay file contacted YouTube'
+            if not SITE.startswith('file:'):
                 for video in ids:
+                    if video in local:
+                        continue
                     page.locator(f'[data-game-video="{video}"]').click()
                     assert page.locator('#game-dialog iframe').count() == 1
+                    assert page.locator('#game-dialog video[controls]').count() == 0
                     assert '/embed/' + video in page.locator('#game-dialog iframe').get_attribute('src')
-            elif ids:
-                assert page.locator('.game-modal-trailer-link').count() == len(ids)
+            else:
+                assert page.locator('.game-modal-trailer-link').count() == len(ids) - len(local)
             page.locator('#game-dialog-close').click()
             page.wait_for_function("!document.querySelector('#game-dialog').open && !location.hash.startsWith('#game-')")
             assert page.locator('#game-dialog iframe,#game-dialog video').count() == 0
         page.locator('nav a[href="#videos"]').click()
-        assert page.locator('.catalog-row:visible').count() == 2
+        assert page.locator('.catalog-row:visible').count() == 4
         page.reload()
         page.locator('.catalog-row').last.wait_for(state='attached')
-        assert page.locator('.catalog-row:visible').count() == 2
+        assert page.locator('.catalog-row:visible').count() == 4
         assert not errors, str(errors)
-        print(f'PASS {width}px: catalog, three popups, five videos, cleanup, Videos navigation, reload; zero page errors.')
+        print(f'PASS {width}px: catalog, four popups, five YouTube videos and two gameplay files, cleanup, Videos navigation, reload; zero page errors.')
         page.close()
     browser.close()
 print('Player wiring checked. Confirm actual YouTube playback on the live HTTPS site after publication.')

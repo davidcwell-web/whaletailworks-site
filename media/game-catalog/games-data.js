@@ -92,12 +92,16 @@ window.WTW_GAME_CATALOG = [
       {src:'img/reef_shot_complete.jpg',caption:'A little life returns'},
       {src:'img/reef_shot_map.jpg',caption:'Your little reef'}
     ],
+    videos: [
+      {src:'media/game-catalog/reef-currents-gameplay.mp4',title:'The first two boards',poster:'media/game-catalog/reef-currents-gameplay.jpg',short:true}
+    ],
     privacy: 'reef-currents-privacy.html'
   },
   {
-    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'coming-soon',
-    accent: '#9fc0dc', price: 'Coming soon',
+    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'available',
+    accent: '#9fc0dc', price: '$3.99',
     priceNote: 'One-time purchase · No ads',
+    store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.lastresidents',
     summary: 'You came to pick up your girlfriend. The lights are on. Nobody answers.',
     cover: 'media/game-catalog/last-residents-cover.webp',
     coverAlt: 'The Last Residents — a house on a hill above a lit town, rain at every window',
@@ -107,7 +111,7 @@ window.WTW_GAME_CATALOG = [
       'Painted rooms, a storm that never quite stops, and a story that starts with an ordinary evening and ends somewhere else entirely.'
     ],
     features: [
-      'Planned as a premium game: buy once, own it. No ads, no in-app purchases.',
+      'Premium: buy once, own it. No ads, no in-app purchases.',
       'Plays fully offline.',
       'Puzzles with no timers and no lives. Every mistake has a way back.',
       'A spooky mystery for teens and up. Quiet more often than loud.'
@@ -118,6 +122,9 @@ window.WTW_GAME_CATALOG = [
       {src:'img/lr_shot_lounge.jpg',caption:'The sitting room'},
       {src:'img/lr_shot_study.jpg',caption:'A study nobody uses'},
       {src:'img/lr_shot_garage.jpg',caption:'The garage'}
+    ],
+    videos: [
+      {src:'media/game-catalog/last-residents-gameplay.mp4',title:'Inside the house',poster:'media/game-catalog/last-residents-gameplay.jpg'}
     ],
     privacy: 'last-residents-privacy.html'
   }
