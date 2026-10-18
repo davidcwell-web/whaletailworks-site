@@ -4,7 +4,7 @@
  */
 window.WTW_GAME_CATALOG = [
   {
-    id: 'xenodex', title: 'XENODEX', genre: 'Sci-fi strategy', status: 'available',
+    id: 'xenodex', title: 'XENODEX', genre: 'Sci-fi strategy', status: 'available', ios: 'coming-soon',
     accent: '#87cdeb', price: '$2.99', priceNote: 'One-time purchase · No ads',
     summary: 'Defend Earth, uncover alien species, and discover who is running the count.',
     cover: 'img/xeno_hero.jpg', coverAlt: 'XENODEX — a lone observer beneath an alien craft',
@@ -37,7 +37,7 @@ window.WTW_GAME_CATALOG = [
     privacy: 'privacy.html'
   },
   {
-    id: 'greenwood', title: 'The Greenwood Way', genre: 'Story & strategy', status: 'available',
+    id: 'greenwood', title: 'The Greenwood Way', genre: 'Story & strategy', status: 'available', ios: 'coming-soon',
     accent: '#b7d9a4', price: '$3.99', priceNote: 'One-time purchase · No ads',
     summary: 'Eight unlikely heroes. A forest worth saving. An adventure with a little mischief.',
     cover: 'media/game-catalog/greenwood-cover.webp', containCover: true,
@@ -69,7 +69,7 @@ window.WTW_GAME_CATALOG = [
     privacy: 'greenwood-privacy.html'
   },
   {
-    id: 'reef-currents', title: 'Reef Currents', genre: 'Cozy underwater puzzle', status: 'available',
+    id: 'reef-currents', title: 'Reef Currents', genre: 'Cozy underwater puzzle', status: 'available', ios: 'coming-soon',
     accent: '#99e0e8', price: 'Free',
     priceNote: 'Optional $1.99: remove ads + play offline',
     store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.reefcurrents',
@@ -98,7 +98,7 @@ window.WTW_GAME_CATALOG = [
     privacy: 'reef-currents-privacy.html'
   },
   {
-    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'available',
+    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'available', ios: 'coming-soon',
     accent: '#9fc0dc', price: '$3.99',
     priceNote: 'One-time purchase · No ads',
     store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.lastresidents',
