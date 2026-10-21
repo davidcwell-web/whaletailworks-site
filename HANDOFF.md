@@ -237,3 +237,10 @@ After all browser uploads, preserve the complete local work on a local backup
 branch, verify identical remote file content, then align main with the published
 remote without force-pushing or changing published history. This is still
 unfinished; the local repository currently has four final modified files.
+
+## 2026-10-21 — App Store listings live: XENODEX and Reef Currents
+- XENODEX App Store: https://apps.apple.com/us/app/xenodex/id6824190743 — $2.99, no ads, 13+.
+- Reef Currents App Store: https://apps.apple.com/us/app/reef-currents/id6824314158 — $0.99, no ads, no in-app purchases.
+- games-data.js: both games now `ios: 'available'` with `appStore` and `appStorePrice`. The popup shows "Download on the App Store"; the row shows the iPhone & iPad price. Greenwood and The Last Residents still show "Coming soon to iOS".
+- index.html: App Store lines added to the no-JavaScript list and the description; cache-bust v=20261021-app-store.
+- Android Reef Currents is still free with ads and the $1.99 removal; the iOS version is the paid $0.99 one, so the two prices are shown separately.

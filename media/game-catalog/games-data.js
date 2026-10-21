@@ -4,7 +4,7 @@
  */
 window.WTW_GAME_CATALOG = [
   {
-    id: 'xenodex', title: 'XENODEX', genre: 'Sci-fi strategy', status: 'available', ios: 'coming-soon',
+    id: 'xenodex', title: 'XENODEX', genre: 'Sci-fi strategy', status: 'available', ios: 'available', appStore: 'https://apps.apple.com/us/app/xenodex/id6824190743', appStorePrice: '$2.99 on the App Store',
     accent: '#87cdeb', price: '$2.99', priceNote: 'One-time purchase · No ads',
     summary: 'Defend Earth, uncover alien species, and discover who is running the count.',
     cover: 'img/xeno_hero.jpg', coverAlt: 'XENODEX — a lone observer beneath an alien craft',
@@ -69,7 +69,7 @@ window.WTW_GAME_CATALOG = [
     privacy: 'greenwood-privacy.html'
   },
   {
-    id: 'reef-currents', title: 'Reef Currents', genre: 'Cozy underwater puzzle', status: 'available', ios: 'coming-soon',
+    id: 'reef-currents', title: 'Reef Currents', genre: 'Cozy underwater puzzle', status: 'available', ios: 'available', appStore: 'https://apps.apple.com/us/app/reef-currents/id6824314158', appStorePrice: '$0.99 on the App Store',
     accent: '#99e0e8', price: 'Free',
     priceNote: 'Optional $1.99: remove ads + play offline',
     store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.reefcurrents',
