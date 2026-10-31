@@ -34,7 +34,7 @@ window.WTW_GAME_CATALOG = [
       {id:'aYksZG8_XV4',title:'Base Defense',poster:'media/game-catalog/xenodex-base-defense-short.jpg',short:true}
     ],
     preview: {src:'media/gameplay-loop.mp4',poster:'img/xeno_shot_hull.jpg'},
-    privacy: 'privacy.html'
+    privacy: 'xenodex/privacy.html'
   },
   {
     id: 'greenwood', title: 'The Greenwood Way', genre: 'Story & strategy', status: 'available', ios: 'coming-soon',
