@@ -127,5 +127,33 @@ window.WTW_GAME_CATALOG = [
       {src:'media/game-catalog/last-residents-gameplay.mp4',title:'Inside the house',poster:'media/game-catalog/last-residents-gameplay.jpg'}
     ],
     privacy: 'last-residents-privacy.html'
+  },
+  {
+    id: 'wickhold', title: 'Wickhold', genre: 'Survival roguelike', status: 'available', ios: 'coming-soon',
+    accent: '#e8b04a', price: '$1.99', priceNote: 'One-time purchase · No ads',
+    store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.wickhold',
+    summary: 'Keep the wick burning. Scavenge the ruins, rescue survivors, and reach the next safehouse before the lamps go out.',
+    cover: 'media/wickhold/wickhold-feature-1024x500.png', containCover: true,
+    coverAlt: 'Wickhold — a brass lantern glowing in a dark blue ruin',
+    paragraphs: [
+      'The ruins are dark, the zombies are patient, and the only light left is the one you carry. Wickhold is a portrait survival roguelike: scavenge the district, rescue survivors, and reach the next safehouse before the lamps go out.',
+      'Play alone, or bring up to three friends. Co-op Expedition has two to four survivors sharing one street and one set of supplies. Versus Streets gives equal starts on separate streets, where spending scrap sends hordes at your rivals. Ghost Race starts everyone from the same seed: reach three destinations in twenty minutes and compare routes and times.',
+      'Solo play has six ruined environments, four playable survivors (you start with Mara; the others unlock as you go), a journal of discoveries, and local saves.'
+    ],
+    features: [
+      'Premium: $1.99 once. No ads, no in-app purchases.',
+      'Solo play and saves work offline. Online modes need a connection.',
+      'No account and no sign-up. Your callsign is the only name you choose.',
+      'Co-op, Versus and Ghost Race for two to four players, with invitation codes.'
+    ],
+    screenshots: [
+      {src:'media/wickhold/wickhold-iphone-shot-1.jpg',caption:'The Blackwater Tunnels, at night'},
+      {src:'media/wickhold/wickhold-iphone-shot-2.jpg',caption:'Restore the relay, hold the line'},
+      {src:'media/wickhold/wickhold-iphone-shot-3.jpg',caption:'A relay in the dark'}
+    ],
+    videos: [
+      {src:'media/wickhold/wickhold-gameplay-iphone-web.mp4',title:'Gameplay in the ruins',poster:'media/wickhold/wickhold-gameplay-iphone-poster.jpg',short:true}
+    ],
+    privacy: 'wickhold-privacy.html'
   }
 ];

@@ -24,7 +24,7 @@ with sync_playwright() as pw:
         page.on('request', lambda r: youtube.append(r.url) if 'youtube' in r.url else None)
         page.goto(SITE.split('#')[0] + '#games')
         page.locator('.catalog-row').last.wait_for(state='attached')
-        assert page.locator('.catalog-row').count() == 4
+        assert page.locator('.catalog-row').count() == 5
         assert page.locator('section#videos').count() == 0
         assert not youtube, 'YouTube contacted before choosing a video'
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
@@ -56,10 +56,10 @@ with sync_playwright() as pw:
             page.wait_for_function("!document.querySelector('#game-dialog').open && !location.hash.startsWith('#game-')")
             assert page.locator('#game-dialog iframe,#game-dialog video').count() == 0
         page.locator('nav a[href="#videos"]').click()
-        assert page.locator('.catalog-row:visible').count() == 4
+        assert page.locator('.catalog-row:visible').count() == 5
         page.reload()
         page.locator('.catalog-row').last.wait_for(state='attached')
-        assert page.locator('.catalog-row:visible').count() == 4
+        assert page.locator('.catalog-row:visible').count() == 5
         assert not errors, str(errors)
         print(f'PASS {width}px: catalog, four popups, five YouTube videos and two gameplay files, cleanup, Videos navigation, reload; zero page errors.')
         page.close()
