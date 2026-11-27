@@ -1,0 +1,50 @@
+/* Styles for the generated game pages (tools/build_game_pages.js). Local font only: no third-party requests. */
+@font-face{font-family:Outfit;src:url('game-catalog/outfit.ttf') format('truetype');font-display:swap}
+:root{--bg:#050810;--panel:#0d1b2d;--line:rgba(90,140,220,.22);--text:#e8eefc;--muted:#a5bbd4;--accent:#87dded}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.65 Outfit,system-ui,sans-serif}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+img,video{max-width:100%;height:auto;display:block}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(16px,4vw,40px);border-bottom:1px solid var(--line)}
+.top>a{color:var(--text);font-weight:600;text-decoration:none;letter-spacing:.02em}
+.top nav{display:flex;gap:18px}
+.top nav a{color:var(--muted);text-decoration:none}
+main{max-width:1040px;margin:0 auto;padding:20px clamp(16px,4vw,40px) 60px}
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:18px}
+.crumbs a{color:var(--muted)}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center;margin-bottom:34px}
+.cover{background:#0a1420;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cover img{width:100%;aspect-ratio:auto}
+.genre{color:var(--accent);font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:600}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.1;letter-spacing:-.02em;margin:6px 0 12px}
+.summary{font-size:18px;color:#cfdaea}
+.buttons{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
+.store{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:10px 16px;border-radius:10px;background:#183346;border:1px solid #315872;color:#f0f5fc;text-decoration:none;font-weight:600}
+.store span{color:var(--accent)}
+.store:hover{background:#26445c}
+.soon{display:inline-flex;align-items:center;min-height:48px;padding:10px 16px;border:1px dashed #627b9a;border-radius:10px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+section{margin-top:34px}
+h2{font-size:20px;margin-bottom:12px;padding-top:16px;border-top:1px solid var(--line)}
+section p+p{margin-top:12px}
+.features{padding-left:20px}
+.features li+li{margin-top:6px}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px}
+.facts dt{color:var(--muted)}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.shots figure,.video{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+figcaption{font-size:13px;color:var(--muted);padding:8px 12px}
+.videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.video a{display:block;position:relative;text-decoration:none}
+.video .play{position:absolute;left:12px;bottom:12px;background:rgba(5,8,16,.85);color:#fff;padding:6px 10px;border-radius:8px;font-size:14px}
+.heroes{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px}
+.heroes li{text-align:center;font-size:13px;color:var(--muted)}
+.heroes img{margin:0 auto 6px;image-rendering:pixelated;max-height:120px;width:auto}
+.more{list-style:none;display:grid;gap:8px}
+.more span{color:var(--muted);font-size:14px;margin-left:6px}
+footer{border-top:1px solid var(--line);padding:22px clamp(16px,4vw,40px);text-align:center;font-size:13px;color:var(--muted)}
+footer p+p{margin-top:6px}
+@media (max-width:720px){.hero{grid-template-columns:1fr}}
+.video video{max-height:70vh;width:auto;margin:0 auto;background:#000}
+.shots img{max-height:60vh;width:100%;object-fit:contain;background:#0a1420}
