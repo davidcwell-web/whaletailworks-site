@@ -208,7 +208,8 @@ let stale = 0;
 for (const [file, body] of outputs) {
   const rel = path.relative(ROOT, file);
   const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
-  if (current === body) { console.log('unchanged  ' + rel); continue; }
+  // Git on Windows may check files out with CRLF; compare without line endings so --check stays honest.
+  if (current !== null && current.replace(/\r\n/g, '\n') === body) { console.log('unchanged  ' + rel); continue; }
   if (CHECK) { console.log('OUT OF DATE  ' + rel); stale++; continue; }
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, body);
