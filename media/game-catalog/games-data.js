@@ -98,7 +98,7 @@ window.WTW_GAME_CATALOG = [
     privacy: 'reef-currents-privacy.html'
   },
   {
-    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'available', ios: 'coming-soon',
+    id: 'last-residents', title: 'The Last Residents', genre: 'Mystery adventure', status: 'available', ios: 'available', appStore: 'https://apps.apple.com/us/app/the-last-residents/id6824238393', appStorePrice: '$3.99 on the App Store',
     accent: '#9fc0dc', price: '$3.99',
     priceNote: 'One-time purchase · No ads',
     store: 'https://play.google.com/store/apps/details?id=net.whaletailworks.lastresidents',
